@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exam | OMR Competitor</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Noto Sans Bengali', sans-serif;
+      background-color: black;
+      color: white;
+      text-align: center;
+    }
+    nav {
+      background-color: #007bff;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav h1 { margin: 0; font-size: 1.5em; }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: bold;
+    }
+    nav a:hover { text-decoration: underline; }
+
+    .container { margin-top: 40px; }
+
+    input[type="text"] {
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      width: 80%;
+      max-width: 300px;
+      margin: 10px auto;
+      display: block;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover { background-color: #0056b3; }
+
+    #exam-section { display: none; margin-top: 30px; }
+
+    img {
+      width: 90%;
+      max-width: 500px;
+      border: 2px solid white;
+      border-radius: 10px;
+    }
+
+    textarea {
+      width: 90%;
+      height: 150px;
+      margin-top: 15px;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      resize: none;
+    }
+
+    .timer {
+      font-size: 1.2em;
+      color: #ffb703;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <h1>OMR Competitor</h1>
+    <div>
+      <a href="update.html">Update</a>
+      <a href="registration.html">Registration</a>
+      <a href="exam.html">Exam</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h2>পরীক্ষায় প্রবেশ করুন</h2>
+    <input type="text" id="serialInput" placeholder="আপনার Serial Number দিন">
+    <button onclick="checkSerial()">প্রবেশ করুন</button>
+
+    <div id="exam-section">
+      <h3>পরীক্ষা শুরু হয়েছে</h3>
+      <div class="timer">⏳ সময় বাকি: <span id="time">--:--</span></div>
+      <img src="question.jpg" alt="Question Paper"><br>
+      <textarea id="omrAnswers" placeholder="এখানে আপনার OMR উত্তর লিখুন..."></textarea><br>
+      <button onclick="submitExam()">Submit</button>
+    </div>
+  </div>
+
+  <script>
+    // ✅ তোমার সেট করা Serial list
+    const allowedSerials = ["101", "102", "103", "104"];
+    // ✅ তুমি এখানেই সময় (মিনিটে) সেট করবে
+    const examDurationMinutes = 10; // এখানে তোমার পছন্দমতো মিনিট বসাও
+
+    let timer;
+    let timeLeft;
+
+    function checkSerial() {
+      const serial = document.getElementById('serialInput').value.trim();
+      if (allowedSerials.includes(serial)) {
+        document.getElementById('exam-section').style.display = 'block';
+        startTimer();
+      } else {
+        alert("অবৈধ সিরিয়াল নাম্বার!");
+      }
+    }
+
+    function startTimer() {
+      timeLeft = examDurationMinutes * 60;
+      timer = setInterval(() => {
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          document.getElementById('omrAnswers').disabled = true;
+          alert("সময় শেষ! এখন কেবল Submit করতে পারবেন।");
+          return;
+        }
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        document.getElementById('time').innerText = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        timeLeft--;
+      }, 1000);
+    }
+
+    function submitExam() {
+      const answers = document.getElementById('omrAnswers').value.trim();
+      if (!answers) {
+        alert("উত্তর লিখে তারপর সাবমিট করুন।");
+        return;
+      }
+      const encodedText = encodeURIComponent(`OMR Competitor উত্তর:\n${answers}`);
+      const whatsappNumber = "01989615778";
+      window.open(`https://wa.me/${whatsappNumber}?text=${encodedText}`, "_blank");
+      alert("আপনার উত্তর পাঠানো হয়েছে!");
+    }
+  </script>
+</body>
+</html>
