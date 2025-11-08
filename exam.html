@@ -1,152 +1,177 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Exam | OMR Competitor</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>OMR Competitor - Protected Exam</title>
   <style>
+    :root { --blue: #007bff; --bg: #000; --card: #111; --accent: #60a5fa; }
     body {
-      margin: 0;
-      font-family: 'Noto Sans Bengali', sans-serif;
-      background-color: black;
-      color: white;
-      text-align: center;
+      margin: 0; font-family: 'Noto Sans Bengali', sans-serif;
+      background: var(--bg); color: #fff; -webkit-font-smoothing:antialiased;
     }
     nav {
-      background-color: #007bff;
-      padding: 15px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      background: var(--blue); padding: 12px 16px; display:flex; align-items:center; justify-content:space-between;
     }
-    nav h1 { margin: 0; font-size: 1.5em; }
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 10px;
-      font-weight: bold;
-    }
-    nav a:hover { text-decoration: underline; }
-
-    .container { margin-top: 40px; }
-
-    input[type="text"] {
-      padding: 10px;
-      border-radius: 5px;
-      border: none;
-      width: 80%;
-      max-width: 300px;
-      margin: 10px auto;
-      display: block;
-    }
-
-    button {
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-    button:hover { background-color: #0056b3; }
-
-    #exam-section { display: none; margin-top: 30px; }
-
-    img {
-      width: 90%;
-      max-width: 500px;
-      border: 2px solid white;
-      border-radius: 10px;
-    }
-
-    textarea {
-      width: 90%;
-      height: 150px;
-      margin-top: 15px;
-      padding: 10px;
-      border-radius: 8px;
-      border: none;
-      resize: none;
-    }
-
-    .timer {
-      font-size: 1.2em;
-      color: #ffb703;
-      margin-top: 10px;
-    }
+    nav .brand { font-weight:700; font-size:18px; }
+    nav .links a { color:#fff; text-decoration:none; margin-left:12px; font-weight:600; }
+    .wrap { max-width:900px; margin:28px auto; padding:12px; }
+    .card { background: var(--card); border:1px solid rgba(96,165,250,0.12); border-radius:10px; padding:16px; }
+    .center { text-align:center; }
+    input[type="text"] { width:90%; max-width:360px; padding:10px; border-radius:6px; border:1px solid #333; background:#000; color:#fff; }
+    button { background:var(--blue); color:#fff; border:none; padding:10px 18px; border-radius:8px; cursor:pointer; font-weight:700; }
+    button:disabled { background:#555; cursor:not-allowed; }
+    .timer { font-size:20px; color:#ffcc00; margin-top:8px; }
+    img.q { width:90%; max-width:640px; border-radius:8px; border:1px solid #333; margin-top:12px; }
+    .note { font-size:14px; color:#ddd; margin-top:8px; }
+    .protected { margin-top:10px; padding:10px; border-radius:8px; background:rgba(255,255,255,0.03); color:#f0f7ff; border:1px dashed rgba(96,165,250,0.12); }
+    .danger { color:#ff7a7a; font-weight:700; }
+    .omr-grid { margin-top:16px; }
+    .question { margin-bottom:10px; padding:8px; border-bottom:1px solid rgba(255,255,255,0.08); }
+    .question label { margin-right:10px; cursor:pointer; }
+    @media (max-width:600px){ .wrap{ padding:8px } img.q{ width:100% } }
   </style>
 </head>
 <body>
   <nav>
-    <h1>OMR Competitor</h1>
-    <div>
+    <div class="brand">OMR Competitor</div>
+    <div class="links">
       <a href="update.html">Update</a>
       <a href="registration.html">Registration</a>
       <a href="exam.html">Exam</a>
     </div>
   </nav>
 
-  <div class="container">
-    <h2>পরীক্ষায় প্রবেশ করুন</h2>
-    <input type="text" id="serialInput" placeholder="আপনার Serial Number দিন">
-    <button onclick="checkSerial()">প্রবেশ করুন</button>
+  <div class="wrap">
+    <div class="card center" id="loginCard">
+      <h2>পরীক্ষায় প্রবেশ করুন</h2>
+      <p class="note">আপনার সিরিয়াল নম্বর দিন — শুধুমাত্র অনুমোদিত সিরিয়াল প্রবেশ করতে পারবে।</p>
+      <input id="serialInput" type="text" placeholder="সিরিয়াল নম্বর লিখুন">
+      <div style="height:10px"></div>
+      <button id="enterBtn">প্রবেশ করুন</button>
+      <div class="protected note" style="text-align:left; max-width:700px; margin:12px auto;">
+        <div style="font-weight:700">সতর্কতা — নিরাপত্তা সক্রিয়</div>
+        <ul style="margin:8px 0 0 16px; padding:0; color:#ccc;">
+          <li>Screenshot নিলেই পরীক্ষা বন্ধ হয়ে যাবে।</li>
+          <li>Time শেষ হলে শুধু submit কাজ করবে।</li>
+          <li>Right-click / Tab change / DevTools নিষিদ্ধ।</li>
+        </ul>
+      </div>
+    </div>
 
-    <div id="exam-section">
-      <h3>পরীক্ষা শুরু হয়েছে</h3>
-      <div class="timer">⏳ সময় বাকি: <span id="time">--:--</span></div>
-      <img src="question.jpg" alt="Question Paper"><br>
-      <textarea id="omrAnswers" placeholder="এখানে আপনার OMR উত্তর লিখুন..."></textarea><br>
-      <button onclick="submitExam()">Submit</button>
+    <div class="card" id="examCard" style="display:none; margin-top:18px;">
+      <div class="center">
+        <h2>পরীক্ষা চলছে</h2>
+        <div class="timer">⏰ অবশিষ্ট সময়: <span id="timeDisplay">--:--</span></div>
+        <p class="note">প্রশ্নপত্র নিচে দেখুন ও উত্তর দিন।</p>
+        <img class="q" id="questionImage" src="images/question.jpg" alt="Question paper">
+      </div>
+
+      <div style="margin-top:14px;" class="center">
+        <h3 style="color:var(--accent)">OMR উত্তরপত্র</h3>
+        <form id="omrForm" class="omr-grid"></form>
+        <button id="submitBtn" type="button" style="margin-top:14px;">Submit</button>
+        <p id="status" class="note" style="margin-top:10px"></p>
+      </div>
     </div>
   </div>
 
-  <script>
-    // ✅ তোমার সেট করা Serial list
-    const allowedSerials = ["101", "102", "103", "104"];
-    // ✅ তুমি এখানেই সময় (মিনিটে) সেট করবে
-    const examDurationMinutes = 10; // এখানে তোমার পছন্দমতো মিনিট বসাও
+<script>
+const allowedSerials = ["1234"];
+const examDurationMinutes = 1; 
+const whatsappNumber = "+8801989615778"; 
 
-    let timer;
-    let timeLeft;
+let timeLeft = 0, examTimer = null, studentSerial = null, submitted = false;
 
-    function checkSerial() {
-      const serial = document.getElementById('serialInput').value.trim();
-      if (allowedSerials.includes(serial)) {
-        document.getElementById('exam-section').style.display = 'block';
-        startTimer();
-      } else {
-        alert("অবৈধ সিরিয়াল নাম্বার!");
-      }
-    }
+const omrForm = document.getElementById('omrForm');
+for (let i = 1; i <= 30; i++) {
+  const div = document.createElement('div');
+  div.className = 'question';
+  div.innerHTML = `
+    <span>প্রশ্ন ${i}:</span>
+    <label><input type="radio" name="q${i}" value="A"> A</label>
+    <label><input type="radio" name="q${i}" value="B"> B</label>
+    <label><input type="radio" name="q${i}" value="C"> C</label>
+    <label><input type="radio" name="q${i}" value="D"> D</label>
+  `;
+  omrForm.appendChild(div);
+}
 
-    function startTimer() {
-      timeLeft = examDurationMinutes * 60;
-      timer = setInterval(() => {
-        if (timeLeft <= 0) {
-          clearInterval(timer);
-          document.getElementById('omrAnswers').disabled = true;
-          alert("সময় শেষ! এখন কেবল Submit করতে পারবেন।");
-          return;
-        }
-        const minutes = Math.floor(timeLeft / 60);
-        const seconds = timeLeft % 60;
-        document.getElementById('time').innerText = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-        timeLeft--;
-      }, 1000);
-    }
+const loginCard = document.getElementById('loginCard');
+const examCard = document.getElementById('examCard');
+const enterBtn = document.getElementById('enterBtn');
+const serialInput = document.getElementById('serialInput');
+const timeDisplay = document.getElementById('timeDisplay');
+const submitBtn = document.getElementById('submitBtn');
+const statusEl = document.getElementById('status');
 
-    function submitExam() {
-      const answers = document.getElementById('omrAnswers').value.trim();
-      if (!answers) {
-        alert("উত্তর লিখে তারপর সাবমিট করুন।");
-        return;
-      }
-      const encodedText = encodeURIComponent(`OMR Competitor উত্তর:\n${answers}`);
-      const whatsappNumber = "01989615778";
-      window.open(`https://wa.me/${whatsappNumber}?text=${encodedText}`, "_blank");
-      alert("আপনার উত্তর পাঠানো হয়েছে!");
-    }
-  </script>
+enterBtn.onclick = () => {
+  const s = serialInput.value.trim();
+  if (!allowedSerials.includes(s)) return alert("ভুল সিরিয়াল!");
+  studentSerial = s;
+  startExam();
+};
+
+function startExam(){
+  loginCard.style.display="none";
+  examCard.style.display="block";
+  timeLeft = examDurationMinutes*60;
+  examTimer=setInterval(tick,1000);
+  updateTime();
+}
+
+function tick(){
+  if(timeLeft<=0){
+    clearInterval(examTimer);
+    disableExam("সময় শেষ!");
+    return;
+  }
+  timeLeft--; updateTime();
+}
+function updateTime(){
+  const m=Math.floor(timeLeft/60), s=timeLeft%60;
+  timeDisplay.textContent=`${m}:${s<10?'0':''}${s}`;
+}
+
+submitBtn.onclick = ()=>manualSubmit();
+
+function manualSubmit(){
+  if(submitted){ alert("ইতিমধ্যেই সাবমিট হয়েছে!"); return; }
+  const answers = [];
+  for(let i=1;i<=30;i++){
+    const sel=document.querySelector(`input[name="q${i}"]:checked`);
+    answers.push(`${i}:${sel?sel.value:'-'}`);
+  }
+  const now=new Date().toLocaleString();
+  const msg=`🆔 সিরিয়াল: ${studentSerial}\n📅 সময়: ${now}\n📋 উত্তর: ${answers.join(', ')}`;
+  window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`,'_blank');
+  statusEl.textContent='✅ উত্তর পাঠানো হয়েছে!';
+  submitted=true;
+}
+
+function disableExam(reason){
+  if(submitted) return;
+  submitted=true;
+  document.querySelectorAll('input, button').forEach(el=>el.disabled=true);
+  statusEl.textContent='🚫 '+reason+' — পরীক্ষা শেষ।';
+  statusEl.style.color='#ff7777';
+}
+
+// protection — screenshot detect
+document.addEventListener('keyup', e=>{
+  if(e.key==='PrintScreen'||e.keyCode===44){
+    alert('❌ Screenshot শনাক্ত! পরীক্ষা বন্ধ।');
+    disableExam("Screenshot শনাক্ত");
+  }
+});
+document.addEventListener('contextmenu',e=>e.preventDefault());
+document.addEventListener('visibilitychange',()=>{ if(document.hidden){ disableExam("Tab পরিবর্তন শনাক্ত"); } });
+window.addEventListener('blur',()=>setTimeout(()=>{if(!document.hasFocus())disableExam("Window ফোকাস হারিয়েছে");},800));
+document.addEventListener('keydown',e=>{
+  if(e.keyCode===123||(e.ctrlKey&&['u','U','s','S','p','P','i','I','j','J','c','C'].includes(e.key))){
+    e.preventDefault(); disableExam("DevTools/Shortcut শনাক্ত");
+  }
+});
+</script>
 </body>
 </html>
