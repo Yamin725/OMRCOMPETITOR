@@ -76,6 +76,7 @@
     <input type="text" id="institute" placeholder="Institute Name">
     <input type="text" id="phone" placeholder="Phone Number">
     <input type="text" id="bkash" placeholder="bKash Number">
+    <input type="text" id="Class And Subject" placeholder="Class And Subject">
     <button onclick="sendRegistration()">Send</button>
   </div>
 
@@ -85,8 +86,9 @@
       const inst = document.getElementById('institute').value;
       const phone = document.getElementById('phone').value;
       const bkash = document.getElementById('bkash').value;
+      const class and subject = document.getElementById('class and subject').value;
 
-      if (!name || !inst || !phone || !bkash) {
+      if (!name || !inst || !phone || !bkash || !c&s) {
         alert("সব ঘর পূরণ করুন!");
         return;
       }
