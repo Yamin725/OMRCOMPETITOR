@@ -72,11 +72,13 @@
 
   <div class="form-container">
     <h2>রেজিস্ট্রেশন ফর্ম</h2>
+
     <input type="text" id="name" placeholder="Student Name">
     <input type="text" id="institute" placeholder="Institute Name">
     <input type="text" id="phone" placeholder="Phone Number">
     <input type="text" id="bkash" placeholder="bKash Number">
-    <input type="text" id="Class And Subject" placeholder="Class And Subject">
+    <input type="text" id="classSubject" placeholder="Class And Subject">
+
     <button onclick="sendRegistration()">Send</button>
   </div>
 
@@ -86,15 +88,23 @@
       const inst = document.getElementById('institute').value;
       const phone = document.getElementById('phone').value;
       const bkash = document.getElementById('bkash').value;
-      const class and subject = document.getElementById('class and subject').value;
+      const classSubject = document.getElementById('classSubject').value;
 
-      if (!name || !inst || !phone || !bkash || !c&s) {
+      if (!name || !inst || !phone || !bkash || !classSubject) {
         alert("সব ঘর পূরণ করুন!");
         return;
       }
 
-      const message = `নতুন রেজিস্ট্রেশন:\n👤 নাম: ${name}\n🏫 প্রতিষ্ঠান: ${inst}\n📞 ফোন: ${phone}\n💳 বিকাশ: ${bkash}`;
+      const message =
+`নতুন রেজিস্ট্রেশন:
+👤 নাম: ${name}
+🏫 প্রতিষ্ঠান: ${inst}
+📞 ফোন: ${phone}
+💳 বিকাশ: ${bkash}
+📘 ক্লাস ও বিষয়: ${classSubject}`;
+
       const whatsappNumber = "+8801989615778";
+
       window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, "_blank");
       alert("তথ্য পাঠানো হয়েছে!");
     }
