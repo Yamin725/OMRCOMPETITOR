@@ -64,11 +64,11 @@
         <h2>পরীক্ষা চলছে</h2>
         <div class="timer">⏰ অবশিষ্ট সময়: <span id="timeDisplay">--:--</span></div>
         <p class="note">প্রশ্নপত্র নিচে দেখুন ও উত্তর দিন।</p>
-        <img class="q" id="questionImage" src="imagesquestion1.jpg" alt="Question paper">
-        <img class="q" id="questionImage" src="imagesquestion2.jpg" alt="Question paper">
-        <img class="q" id="questionImage" src="imagesquestion3.jpg" alt="Question paper">
-        <img class="q" id="questionImage" src="imagesquestion4.jpg" alt="Question paper">
-        <img class="q" id="questionImage" src="imagesquestion5.jpg" alt="Question paper">
+        <img class="q" id="questionImage" src="images/question1.jpg" alt="Question paper">
+        <img class="q" id="questionImage" src="images/question2.jpg" alt="Question paper">
+        <img class="q" id="questionImage" src="images/question3.jpg" alt="Question paper">
+        <img class="q" id="questionImage" src="images/question4.jpg" alt="Question paper">
+        <img class="q" id="questionImage" src="images/question5.jpg" alt="Question paper">
       </div>
 
       <div style="margin-top:14px;" class="center">
@@ -81,8 +81,7 @@
   </div>
 
 <script>
-const allowedSerials = ["1250716","2502605178","25026097","250260983","25026741","25026899","2502687","250260721","250260974","250260634","25026088","25026097","250260983","2502605178","250260776",
-"2502609822","25026056","250260984","25026022","250260933","250260444","250260799","25026047","250260976","250260777","2502686","250260988","250260999","25026965","25026088","250260873","25026061","250260789","25026034","250260889","25026058","250260100","250260712","25026066","25026088","25026092","25026044","25026024","2502607","250260123","250260567","250260344","25026755","250260769","25026063","250260777","25026078","25026077","2502602","25025070","2502601","25026099","25026013","25026001","2502605","2502603","2502604","250260236","25026000"];
+const allowedSerials = [1250716];
 const examDurationMinutes = 30; 
 const whatsappNumber = "+8801989615778"; 
 
@@ -114,7 +113,13 @@ enterBtn.onclick = () => {
   const s = serialInput.value.trim();
   const today = new Date().toISOString().split('T')[0]; // আজকের তারিখ 2025/11/25 ফরম্যাটে
 
-  
+  // আগের রেকর্ড আছে কিনা চেক করো
+  const lastExam = localStorage.getItem(`exam_${s}`);
+  if (lastExam === today) {
+    alert("⚠️ আপনি আজকের পরীক্ষায় ইতিমধ্যেই অংশগ্রহণ করেছেন!");
+    return;
+  }
+
   if (!allowedSerials.includes(s)) return alert("ভুল সিরিয়াল!");
   studentSerial = s;
 
@@ -186,4 +191,4 @@ document.addEventListener('keydown',e=>{
 });
 </script>
 </body>
-</html>
+</html>                                                                                                                                                                     ekhane pg gulor name ki? 
