@@ -114,13 +114,7 @@ enterBtn.onclick = () => {
   const s = serialInput.value.trim();
   const today = new Date().toISOString().split('T')[0]; // আজকের তারিখ 2025/11/25 ফরম্যাটে
 
-  // আগের রেকর্ড আছে কিনা চেক করো
-  const lastExam = localStorage.getItem(`exam_${s}`);
-  if (lastExam === today) {
-    alert("⚠️ আপনি আজকের পরীক্ষায় ইতিমধ্যেই অংশগ্রহণ করেছেন!");
-    return;
-  }
-
+  
   if (!allowedSerials.includes(s)) return alert("ভুল সিরিয়াল!");
   studentSerial = s;
 
