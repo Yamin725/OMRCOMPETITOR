@@ -81,7 +81,7 @@
   </div>
 
 <script>
-const allowedSerials = [1250716];
+const allowedSerials = ["1250716","25026097","25026077","25026001","250260974","2502686","25026056","250260344","2502609822","250260236","25026899","2502601"];
 const examDurationMinutes = 30; 
 const whatsappNumber = "+8801989615778"; 
 
@@ -111,7 +111,7 @@ const statusEl = document.getElementById('status');
 
 enterBtn.onclick = () => {
   const s = serialInput.value.trim();
-  const today = new Date().toISOString().split('T')[0]; // আজকের তারিখ 2025/11/25 ফরম্যাটে
+  const today = new Date().toISOString().split('T')[0]; // আজকের তারিখ 2025/11/27 ফরম্যাটে
 
   // আগের রেকর্ড আছে কিনা চেক করো
   const lastExam = localStorage.getItem(`exam_${s}`);
