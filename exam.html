@@ -64,11 +64,11 @@
         <h2>পরীক্ষা চলছে</h2>
         <div class="timer">⏰ অবশিষ্ট সময়: <span id="timeDisplay">--:--</span></div>
         <p class="note">প্রশ্নপত্র নিচে দেখুন ও উত্তর দিন।</p>
-        <img class="q" id="questionImage" src="imagesquestion1.jpg" alt="Question paper">
-        <img class="q" id="questionImage" src="imagesquestion2.jpg" alt="Question paper">
-        <img class="q" id="questionImage" src="imagesquestion3.jpg" alt="Question paper">
-        <img class="q" id="questionImage" src="imagesquestion4.jpg" alt="Question paper">
-        <img class="q" id="questionImage" src="imagesquestion5.jpg" alt="Question paper">
+        <img class="q" id="questionImage" src="imagesquestion1.png" alt="Question paper">
+        <img class="q" id="questionImage" src="imagesquestion2.png" alt="Question paper">
+        <img class="q" id="questionImage" src="imagesquestion3.png" alt="Question paper">
+        <img class="q" id="questionImage" src="imagesquestion4.png" alt="Question paper">
+        <img class="q" id="questionImage" src="imagesquestion5.png" alt="Question paper">
       </div>
 
       <div style="margin-top:14px;" class="center">
@@ -81,7 +81,7 @@
   </div>
 
 <script>
-const allowedSerials = ["1250716","2502601"];
+const allowedSerials = ["1229001","1229002","1229003","1229004","1229005","1229006","1229007","1229008","1229009","1229010","1229011","1229012","1229013","1229014","1250716","6677"];
 const examDurationMinutes = 30; 
 const whatsappNumber = "+8801989615778"; 
 
@@ -114,7 +114,7 @@ enterBtn.onclick = () => {
   const today = new Date().toISOString().split('T')[0]; // আজকের তারিখ 2025/11/29 ফরম্যাটে
 
   // আগের রেকর্ড আছে কিনা চেক করো
-  const lastExam = localStorage.getItem(`examV7_${s}`);
+  const lastExam = localStorage.getItem(`examV8_${s}`);
   if (lastExam === today) {
     alert("⚠️ আপনি আজকের পরীক্ষায় ইতিমধ্যেই অংশগ্রহণ করেছেন!");
     return;
@@ -124,7 +124,7 @@ enterBtn.onclick = () => {
   studentSerial = s;
 
   // লগইনের পর আজকের তারিখ সেভ করো
-  localStorage.setItem(`examV7_${s}`, today);
+  localStorage.setItem(`examV8_${s}`, today);
   
   startExam();
 };
