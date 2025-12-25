@@ -114,7 +114,7 @@ enterBtn.onclick = () => {
   const today = new Date().toISOString().split('T')[0]; // আজকের তারিখ 2025/11/29 ফরম্যাটে
 
   // আগের রেকর্ড আছে কিনা চেক করো
-  const lastExam = localStorage.getItem(`examV8_${s}`);
+  const lastExam = localStorage.getItem(`examV9_${s}`);
   if (lastExam === today) {
     alert("⚠️ আপনি আজকের পরীক্ষায় ইতিমধ্যেই অংশগ্রহণ করেছেন!");
     return;
@@ -124,7 +124,7 @@ enterBtn.onclick = () => {
   studentSerial = s;
 
   // লগইনের পর আজকের তারিখ সেভ করো
-  localStorage.setItem(`examV8_${s}`, today);
+  localStorage.setItem(`examV9_${s}`, today);
   
   startExam();
 };
