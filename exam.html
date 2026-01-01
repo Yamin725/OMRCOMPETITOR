@@ -81,8 +81,8 @@
   </div>
 
 <script>
-const allowedSerials = ["1229014","1250716","6677"];
-const examDurationMinutes = 30; 
+const allowedSerials = ["1229007","1229013","1229004","1229005","1250716","1229014"];
+const examDurationMinutes = 15; 
 const whatsappNumber = "+8801989615778"; 
 
 let timeLeft = 0, examTimer = null, studentSerial = null, submitted = false;
@@ -114,7 +114,7 @@ enterBtn.onclick = () => {
   const today = new Date().toISOString().split('T')[0]; // আজকের তারিখ 2025/11/29 ফরম্যাটে
 
   // আগের রেকর্ড আছে কিনা চেক করো
-  const lastExam = localStorage.getItem(`examV16_${s}`);
+  const lastExam = localStorage.getItem(`examV17_${s}`);
   if (lastExam === today) {
     alert("⚠️ আপনি আজকের পরীক্ষায় ইতিমধ্যেই অংশগ্রহণ করেছেন!");
     return;
@@ -124,7 +124,7 @@ enterBtn.onclick = () => {
   studentSerial = s;
 
   // লগইনের পর আজকের তারিখ সেভ করো
-  localStorage.setItem(`examV16_${s}`, today);
+  localStorage.setItem(`examV17_${s}`, today);
   
   startExam();
 };
