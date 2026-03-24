@@ -4,39 +4,81 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OMR Competitor</title>
+
   <style>
     body {
-      background-color: black;
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+      background-attachment: fixed;
       color: white;
       text-align: center;
-      font-family: 'Noto Sans Bengali', sans-serif;
-      margin: 0;
-      padding: 0;
+      min-height: 100vh;
     }
+
+    /* NAVBAR */
     nav {
-      background-color: #007BFF;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(12px);
       padding: 15px;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      position: sticky;
+      top: 0;
     }
+
     nav a {
       color: white;
       text-decoration: none;
-      margin: 0 15px;
-      font-size: 18px;
-      font-weight: bold;
+      font-size: 16px;
+      font-weight: 600;
+      transition: 0.3s;
     }
+
     nav a:hover {
-      text-decoration: underline;
+      color: #ffd700;
     }
+
+    /* MAIN CARD */
     .container {
-      margin-top: 60px;
+      margin: 60px auto;
+      max-width: 400px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(20px);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
+
     img {
-      width: 180px;
-      margin-bottom: 20px;
+      width: 140px;
+      border-radius: 50%;
+      border: 2px solid white;
+      margin-bottom: 15px;
     }
+
+    h1 {
+      margin: 10px 0;
+      font-size: 28px;
+    }
+
+    h3 {
+      margin: 5px 0;
+      color: #ffd700;
+      font-weight: 500;
+    }
+
+    p {
+      font-size: 14px;
+      color: #eee;
+    }
+
   </style>
 </head>
+
 <body>
+
   <nav>
     <a href="update.html">Update</a>
     <a href="registration.html">Registration</a>
@@ -49,5 +91,6 @@
     <h3>জিততেই হবে</h3>
     <p>একটি একাডেমিক অনলাইন পরীক্ষার প্ল্যাটফর্ম</p>
   </div>
+
 </body>
 </html>
