@@ -5,64 +5,112 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registration | OMR Competitor</title>
   <style>
+    /* ইনস্টাগ্রাম গ্রেডিয়েন্ট ব্যাকগ্রাউন্ড */
     body {
       margin: 0;
-      font-family: 'Noto Sans Bengali', sans-serif;
-      background-color: black;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+      background-attachment: fixed;
       color: white;
       text-align: center;
+      min-height: 100vh;
     }
+
+    /* নেভিগেশন বার */
     nav {
-      background-color: #007bff;
-      padding: 15px;
+      background-color: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      padding: 10px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
-    nav h1 { margin: 0; font-size: 1.5em; }
-    nav a {
+
+    /* লোগো স্টাইল */
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%; /* লোগোটি গোল দেখাবে */
+      border: 2px solid white;
+      object-fit: cover;
+    }
+    nav h1 { margin: 0; font-size: 1.2em; letter-spacing: 1px; }
+
+    nav div a {
       color: white;
       text-decoration: none;
-      margin: 0 10px;
-      font-weight: bold;
+      margin: 0 8px;
+      font-weight: 500;
+      font-size: 0.85em;
     }
-    nav a:hover { text-decoration: underline; }
 
+    /* ফর্ম কন্টেইনার */
     .form-container {
       padding: 30px;
-      margin: auto;
-      width: 90%;
+      margin: 30px auto;
+      width: 85%;
       max-width: 400px;
-      background-color: rgba(0, 0, 0, 0.6);
-      border-radius: 10px;
-      border: 1px solid #007bff;
-      margin-top: 40px;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      color: #262626;
     }
 
+    .form-container h2 {
+      margin-bottom: 20px;
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    /* ইনপুট ফিল্ড */
     input {
       width: 90%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 5px;
-      border: none;
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 6px;
+      border: 1px solid #dbdbdb;
+      background: #fafafa;
+      color: #262626;
       outline: none;
+      font-size: 14px;
     }
+    input:focus { border: 1px solid #a8a8a8; }
 
+    /* বাটন */
     button {
-      background-color: #007bff;
+      background-color: #0095f6;
       color: white;
-      padding: 10px 20px;
+      padding: 10px;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
       cursor: pointer;
-      margin-top: 10px;
+      margin-top: 15px;
+      width: 96%;
+      font-size: 15px;
+      font-weight: 600;
+      transition: 0.3s;
     }
-    button:hover { background-color: #0056b3; }
+    button:hover { background-color: #1877f2; }
+    button:disabled { background-color: #b2dffc; }
+
   </style>
 </head>
 <body>
+
   <nav>
-    <h1>OMR Competitor</h1>
+    <div class="nav-brand">
+      <img src="logo.png" alt="Logo" class="logo-img">
+      <h1>OMR Competitor</h1>
+    </div>
     <div>
       <a href="update.html">Update</a>
       <a href="registration.html">Registration</a>
@@ -71,43 +119,65 @@
   </nav>
 
   <div class="form-container">
-    <h2>রেজিস্ট্রেশন ফর্ম</h2>
+    <h2>Student Registration</h2>
 
-    <input type="text" id="name" placeholder="Student Name">
+    <input type="text" id="name" placeholder="Full Name">
     <input type="text" id="institute" placeholder="Institute Name">
-    <input type="text" id="phone" placeholder="Phone Number">
-    <input type="text" id="bkash" placeholder="bKash Number">
-    <input type="text" id="classSubject" placeholder="Class And Subject">
+    <input type="text" id="phonenumber" placeholder="Phone Number">
+    <input type="text" id="emailaddress" placeholder="Email Address">
+    <input type="text" id="whatsappnumber" placeholder="WhatsApp Number">
+    <input type="text" id="bkashnumber" placeholder="bKash Number">
+    <input type="text" id="class" placeholder="Class">
+    <input type="text" id="subject" placeholder="Subject">
+    <input type="text" id="group" placeholder="Group">
+    <input type="text" id="catagory" placeholder="Category">
 
-    <button onclick="sendRegistration()">Send</button>
+    <button id="submitBtn" onclick="sendRegistration()">Register Now</button>
   </div>
 
   <script>
     function sendRegistration() {
-      const name = document.getElementById('name').value;
-      const inst = document.getElementById('institute').value;
-      const phone = document.getElementById('phone').value;
-      const bkash = document.getElementById('bkash').value;
-      const classSubject = document.getElementById('classSubject').value;
+      // আপনার Google App Script URL টি এখানে বসান
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbyCrwuXf0KouUTElrVikaSk6SiMf_CH8EPhlFxakl5qvqMuckItLZz36HlJgdXmP6RT7w/exec';
+      const btn = document.getElementById('submitBtn');
+      
+      const formData = {
+        name: document.getElementById('name').value,
+        institute: document.getElementById('institute').value,
+        phonenumber: document.getElementById('phonenumber').value,
+        whatsappnumber: document.getElementById('whatsappnumber').value,
+        bkashnumber: document.getElementById('bkashnumber').value,
+        class: document.getElementById('class').value,
+        subject: document.getElementById('subject').value,
+        group: document.getElementById('group').value,
+        catagory: document.getElementById('catagory').value
+      };
 
-      if (!name || !inst || !phone || !bkash || !classSubject) {
-        alert("সব ঘর পূরণ করুন!");
+      if (!formData.name || !formData.phonenumber) {
+        alert("দয়া করে নাম এবং ফোন নম্বর অবশ্যই পূরণ করুন!");
         return;
       }
 
-      const message =
-`নতুন রেজিস্ট্রেশন:
-👤 নাম: ${name}
-🏫 প্রতিষ্ঠান: ${inst}
-📞 ফোন: ${phone}
-💳 বিকাশ: ${bkash}
-📘 ক্লাস ও বিষয়: ${classSubject}`;
+      btn.innerText = "Processing...";
+      btn.disabled = true;
 
-      const whatsappNumber = "+8801989615778";
-
-      window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, "_blank");
-      alert("তথ্য পাঠানো হয়েছে!");
+      fetch(scriptURL, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: new URLSearchParams(formData)
+      })
+      .then(() => {
+        alert("অভিনন্দন! রেজিস্ট্রেশন সফল হয়েছে।");
+        document.querySelectorAll('input').forEach(input => input.value = '');
+        btn.innerText = "Register Now";
+        btn.disabled = false;
+      })
+      .catch(error => {
+        alert("সমস্যা হয়েছে! আবার চেষ্টা করুন।");
+        btn.disabled = false;
+      });
     }
   </script>
+
 </body>
 </html>

@@ -5,53 +5,80 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Update | OMR Competitor</title>
   <style>
+    /* ইনস্টাগ্রাম সিগনেচার গ্রেডিয়েন্ট ব্যাকগ্রাউন্ড */
     body {
       margin: 0;
-      font-family: 'Noto Sans Bengali', sans-serif;
-      background-color: black;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+      background-attachment: fixed;
       color: white;
-      text-align: center;
+      min-height: 100vh;
     }
+
+    /* গ্লাস-মরফিজম নেভিগেশন বার */
     nav {
-      background-color: #007bff;
-      padding: 15px;
+      background-color: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(15px);
+      padding: 10px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
-    nav h1 { margin: 0; font-size: 1.5em; }
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 10px;
-      font-weight: bold;
-    }
-    nav a:hover { text-decoration: underline; }
+    .nav-brand { display: flex; align-items: center; gap: 10px; }
+    .logo-img { width: 35px; height: 35px; border-radius: 50%; border: 1.5px solid #fff; object-fit: cover; }
+    nav h1 { margin: 0; font-size: 1.2rem; font-weight: 600; }
+    nav div a { color: white; text-decoration: none; margin-left: 15px; font-size: 0.9rem; font-weight: 500; }
 
-    .container {
-      padding: 20px;
-    }
+    .container { padding: 20px 10px; display: flex; flex-direction: column; align-items: center; }
+    h2 { margin-bottom: 20px; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
 
+    /* ইনস্টাগ্রাম পোস্ট স্টাইল কার্ড */
     .update-box {
-      border: 1px solid #007bff;
-      border-radius: 10px;
-      padding: 15px;
-      margin: 20px auto;
-      width: 90%;
-      max-width: 600px;
-      background-color: rgba(0, 0, 0, 0.6);
+      background-color: white;
+      color: #262626;
+      border-radius: 12px;
+      margin-bottom: 25px;
+      width: 100%;
+      max-width: 450px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     }
 
-    img {
-      width: 100%;
-      border-radius: 8px;
-      margin-bottom: 10px;
+    /* পোস্টের উপরের অংশ (Header) */
+    .post-header {
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid #efefef;
     }
+    .post-header .dot { width: 8px; height: 8px; background: #d6249f; border-radius: 50%; }
+    .post-header span { font-weight: 600; font-size: 0.95rem; }
+
+    /* ছবি */
+    .update-box img { width: 100%; display: block; background-color: #fafafa; }
+
+    /* পোস্টের নিচের টেক্সট অংশ */
+    .post-content { padding: 15px; text-align: left; line-height: 1.6; }
+    .post-content p { margin: 8px 0; font-size: 0.95rem; border-bottom: 1px solid #f0f0f0; padding-bottom: 5px; }
+    .post-content p:last-child { border-bottom: none; }
+    .post-content b { color: #0095f6; font-weight: 600; margin-right: 5px; }
+
+    /* ইনস্টাগ্রাম লাইক/কমেন্ট আইকন সিম্বল (ডিজাইনের জন্য) */
+    .post-actions { padding: 10px 15px; display: flex; gap: 15px; border-top: 1px solid #efefef; color: #8e8e8e; font-size: 1.2rem; }
   </style>
 </head>
 <body>
+
   <nav>
-    <h1>OMR Competitor</h1>
+    <div class="nav-brand">
+      <img src="logo.png" alt="Logo" class="logo-img">
+      <h1>OMR Competitor</h1>
+    </div>
     <div>
       <a href="update.html">Update</a>
       <a href="registration.html">Registration</a>
@@ -62,55 +89,41 @@
   <div class="container">
     <h2>সর্বশেষ আপডেট</h2>
 
-    <!-- Update 1 -->
     <div class="update-box">
+      <div class="post-header"><div class="dot"></div><span>রজিস্ট্রেশন নোটিশ</span></div>
       <img src="update1.jpg" alt="Update 1">
-      <p><b>তারিখ:</b> ০৫ ডিসেম্বর ২০২৫ থেকে রেজিস্ট্রেশন শুরু</p>
-      <p><b>রেজিস্ট্রেশন:</b> ২৫ ডিসেম্বর পর্যন্ত চলবে।</p>
-      <p><b>রেজাল্ট:</b> ৩১ ডিসেম্বর Whatsapp Channel এ জানানো হবে।</p>
-      <p><b>পুরস্কার বিতরণ:</b>সুন্দরবন কুরিয়ার এর মাধ্যমে পৌছে দেওয়া হবে।</p>
-      <p><b>উইনার:</b>Whatsapp Channel এ ঘোষণা করা হবে।</p>
+      <div class="post-content">
+        <p><b>তারিখ:</b> ০৫ ডিসেম্বর ২০২৫ থেকে রেজিস্ট্রেশন শুরু</p>
+        <p><b>রেজিস্ট্রেশন:</b> ২৫ ডিসেম্বর পর্যন্ত চলবে।</p>
+        <p><b>রেজাল্ট:</b> ৩১ ডিসেম্বর Whatsapp Channel এ জানানো হবে।</p>
+        <p><b>পুরস্কার বিতরণ:</b> সুন্দরবন কুরিয়ার এর মাধ্যমে পৌছে দেওয়া হবে।</p>
+        <p><b>উইনার:</b> Whatsapp Channel এ ঘোষণা করা হবে।</p>
+      </div>
     </div>
 
-    <!-- Update 2 -->
     <div class="update-box">
+      <div class="post-header"><div class="dot"></div><span>পেমেন্ট পদ্ধতি</span></div>
       <img src="update2.jpg" alt="Update 2">
-      <p><b>তারিখ:</b> ০৫ ডিসেম্বর ২০২৫ থেকে রেজিস্ট্রেশন শুরু</p>
-      <p><b>রেজিস্ট্রেশন:</b> ২৫ ডিসেম্বর পর্যন্ত চলবে </p>
-      <p><b>Payment পদ্ধতি:</b> Bkash- 01989615778 </p>
-      <p><b>পুরস্কার বিতরণ:</b>E-Certificate. Whatsapp এ দেওয়া হবে।</p>
-      <p><b>উইনার:</b>Whatsapp Channel এ ঘোষণা করা হবে</p>
+      <div class="post-content">
+        <p><b>তারিখ:</b> ০৫ ডিসেম্বর ২০২৫ থেকে রেজিস্ট্রেশন শুরু</p>
+        <p><b>রেজিস্ট্রেশন:</b> ২৫ ডিসেম্বর পর্যন্ত চলবে</p>
+        <p><b>Payment পদ্ধতি:</b> Bkash- 01989615778</p>
+        <p><b>পুরস্কার বিতরণ:</b> E-Certificate. Whatsapp এ দেওয়া হবে।</p>
+      </div>
     </div>
 
-    <!-- Update 3 -->
     <div class="update-box">
+      <div class="post-header"><div class="dot"></div><span>প্রতিযোগিতার সূচি</span></div>
       <img src="update3.jpg" alt="Update 3">
-      <p><b>Event এর নাম:</b> Bangladesh related GK Mcq competition</p>
-      <p><b>১ম পরিক্ষা:</b> ২৫/১২/২০২৫ </p>
-      <p><b>২য় পরিক্ষা:</b> ---</p>
-      <p><b>৩য় পরিক্ষা:</b> ২৯/১২/২০২৫ </p>
-      <p><b>চুড়ান্ত ফলাফল:</b>৩১/১২/২০২৫</p>
+      <div class="post-content">
+        <p><b>Event এর নাম:</b> Bangladesh related GK Mcq competition</p>
+        <p><b>১ম পরিক্ষা:</b> ২৫/১২/২০২৫</p>
+        <p><b>২য় পরিক্ষা:</b> ---</p>
+        <p><b>৩য় পরিক্ষা:</b> ২৯/১২/২০২৫</p>
+        <p><b>চুড়ান্ত ফলাফল:</b> ৩১/১২/২০২৫</p>
+      </div>
     </div>
 
-    <!-- Update 4 -->
-    <div class="update-box">
-      <img src="update4.jpg" alt="Update 4">
-      <p><b>তারিখ:</b>---</p>
-      <p><b>রেজিস্ট্রেশন:</b>---</p>
-      <p><b>রেজাল্ট:</b>---</p>
-      <p><b>পুরস্কার বিতরণ:</b>---</p>
-      <p><b>উইনার:</b>---</p>
-    </div>
-
-    <!-- Update 5 -->
-    <div class="update-box">
-      <img src="update5.jpg" alt="Update 5">
-      <p><b>তারিখ:</b>---</p>
-      <p><b>রেজিস্ট্রেশন:</b>---</p>
-      <p><b>রেজাল্ট:</b>---</p>
-      <p><b>পুরস্কার বিতরণ:</b>---</p>
-      <p><b>উইনার:</b>---</p>
-    </div>
   </div>
 </body>
 </html>
